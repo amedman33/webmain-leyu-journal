@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>一段熟悉的入口 · 澳客</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f5faf8;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.7;
+      color: #1f3b3a;
+      padding: 1.5rem 0 3rem;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* 标题区 */
+    .article-header {
+      margin-bottom: 2.2rem;
+      border-bottom: 2px solid #d8ede8;
+      padding-bottom: 1.2rem;
+    }
+
+    .article-header h1 {
+      font-size: 2rem;
+      font-weight: 550;
+      letter-spacing: -0.02em;
+      color: #155a5c;
+      line-height: 1.3;
+    }
+
+    .article-header .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.5rem;
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      color: #4f7372;
+    }
+
+    .article-header .meta span {
+      background: #e5f3ef;
+      padding: 0.15rem 0.8rem;
+      border-radius: 20px;
+    }
+
+    .subhead {
+      font-size: 1.1rem;
+      color: #2f6b6a;
+      margin: 1rem 0 1.5rem;
+      padding-left: 1rem;
+      border-left: 4px solid #53b3a8;
+      background: #ecf7f4;
+      border-radius: 0 8px 8px 0;
+      line-height: 1.6;
+    }
+
+    .content p {
+      margin-bottom: 1.4rem;
+      font-size: 1.05rem;
+      color: #1f3b3a;
+    }
+
+    .content p:first-of-type::first-letter {
+      font-size: 2.2rem;
+      font-weight: 500;
+      color: #287e7a;
+      margin-right: 4px;
+      line-height: 1;
+    }
+
+    /* 引用块——提示感 */
+    .pull-quote {
+      background: #ffffff;
+      border-left: 5px solid #38a89d;
+      padding: 1.2rem 1.5rem;
+      margin: 1.8rem 0;
+      border-radius: 0 14px 14px 0;
+      box-shadow: 0 2px 8px rgba(25, 90, 85, 0.06);
+      font-style: normal;
+    }
+
+    .pull-quote p {
+      margin: 0;
+      color: #175f5c;
+      font-weight: 450;
+    }
+
+    .pull-quote .source {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: #589b94;
+    }
+
+    /* 网格卡片 —— 特点/场景  */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 2rem 0 1.8rem;
+    }
+
+    .grid-card {
+      background: #ffffff;
+      padding: 1.2rem 1rem;
+      border-radius: 18px;
+      box-shadow: 0 3px 12px rgba(40, 120, 110, 0.06);
+      border: 1px solid #d8ede8;
+      transition: background 0.2s;
+    }
+
+    .grid-card:hover {
+      background: #f0faf7;
+    }
+
+    .grid-card h3 {
+      font-size: 1rem;
+      font-weight: 540;
+      color: #155a5c;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .grid-card h3::before {
+      content: "·";
+      color: #38a89d;
+      font-weight: 700;
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .grid-card p {
+      font-size: 0.94rem;
+      color: #2a5e5b;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* FAQ 摘要 – 问答感 */
+    .faq-mini {
+      margin-top: 2.4rem;
+      padding-top: 1.5rem;
+      border-top: 1px dashed #bcd9d3;
+    }
+
+    .faq-item {
+      margin-bottom: 1.2rem;
+    }
+
+    .faq-item .q {
+      font-weight: 550;
+      color: #155a5c;
+      background: #eaf6f2;
+      display: inline-block;
+      padding: 0.1rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .faq-item .a {
+      padding-left: 0.6rem;
+      border-left: 2px solid #b8dbd4;
+      margin-left: 0.3rem;
+      color: #1f4a47;
+    }
+
+    /* 访问句 —— 自然嵌入链接 */
+    .visit-sentence {
+      background: #e0f1ed;
+      padding: 1.2rem 1.5rem;
+      border-radius: 20px;
+      margin: 2rem 0 1.2rem;
+      font-size: 1.05rem;
+      text-align: center;
+    }
+
+    .visit-sentence a {
+      color: #0f6f68;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 2px;
+      text-decoration-color: #7ecbc1;
+      font-weight: 550;
+      transition: color 0.15s;
+    }
+
+    .visit-sentence a:hover {
+      color: #094c47;
+      text-decoration-color: #094c47;
+    }
+
+    /* 尾注 */
+    .footer-note {
+      margin-top: 3rem;
+      font-size: 0.8rem;
+      color: #6c928e;
+      text-align: center;
+      padding-top: 1rem;
+      border-top: 1px solid #d4e7e2;
+    }
+
+    /* 响应式 */
+    @media (max-width: 520px) {
+      .article-header h1 {
+        font-size: 1.6rem;
+      }
+
+      .grid-cards {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+
+      .pull-quote {
+        margin: 1.2rem 0;
+        padding: 1rem;
+      }
+
+      .subhead {
+        font-size: 1rem;
+        padding-left: 0.8rem;
+      }
+
+      .visit-sentence {
+        padding: 1rem;
+        font-size: 0.96rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <article>
+      <div class="article-header">
+        <h1>稳定与习惯 · 从一处入口说起</h1>
+        <div class="meta">
+          <span>站点笔记</span>
+          <span>温和视角</span>
+          <span>简洁版</span>
+        </div>
+      </div>
+
+      <p class="subhead">
+        有些地方不会频繁改变它的入口，你只需要记住它的名字，其余交给习惯。
+      </p>
+
+      <div class="content">
+        <p>
+          在互联网的碎片流动里，太多页面每天换着样式、改着路径，让人疲于重新适应。但有一些名字和地址，长久地保持着它的位置——它们不张扬，也不频繁迁移，仅仅是安静地停在那里，等你需要的时候直接走过去。就像过去在浏览器收藏夹里固定下来的那一个标签页，打开就是熟悉的界面，没有多余的跳转。
+        </p>
+
+        <p>
+          我一直觉得，一个好的站点入口，应该像一扇熟悉的门：你知道它在那里，也清楚进去后能看到什么。不需要每次重新学习如何使用，也不用担心它忽然消失。这也是很多人长期使用 <a href="https://wap-zh-okooo.com">澳客</a> 的原因之一——它在移动设备上的入口始终如一，界面没有过度包装，信息更接近直觉。
+        </p>
+
+        <div class="pull-quote">
+          <p>“一个可靠的入口，比一万次推荐更有价值。它不承诺惊喜，但承诺稳定。”</p>
+          <span class="source">—— 来自一位长期使用者的描述</span>
+        </div>
+
+        <p>
+          从结构上看，<strong>澳客</strong> 的页面并不堆砌模块。它更像是为熟悉体育资讯与数据的人准备的一本薄册子：标题清晰，内容分段明确，没有多余的弹窗或横幅干扰。无论你是盯着即时比分，还是翻阅赛前分析，都能在较短时间内定位到自己想要的那一块。这种「不费力」的感觉，在信息过载的今天反而显得稀缺。
+        </p>
+
+        <!-- 卡片网格：特点与场景 -->
+        <div class="grid-cards">
+          <div class="grid-card">
+            <h3>入口简洁</h3>
+            <p>首页直接展示核心内容分区，不反复要求登录或授权，打开即用。</p>
+          </div>
+          <div class="grid-card">
+            <h3>移动优先</h3>
+            <p>页面针对手机浏览优化，字体、按钮、间距都自然舒适。</p>
+          </div>
+          <div class="grid-card">
+            <h3>信息层次</h3>
+            <p>比分、数据、资讯各自独立区块，一目了然，减少无效滑动。</p>
+          </div>
+          <div class="grid-card">
+            <h3>稳定迭代</h3>
+            <p>长期以来保持相同的使用逻辑，老用户不需要重新适应。</p>
+          </div>
+        </div>
+
+        <p>
+          当然，任何工具都有自己的边界。它的定位更偏向于“随手可查的信息台”，而不是社区或社交广场。如果你想要的是一个安静、直接、不需要花费精力去适应的体育信息窗口，那么它的风格恰好契合这种偏好。没有什么玄妙的技巧，只是把页面说明白、把入口做稳定。
+        </p>
+      </div>
+
+      <!-- 引用式提示（非诱导） -->
+      <div class="pull-quote">
+        <p>提示：页面内容以即时体育资讯和基础数据为主，建议根据自己实际需要浏览，不必过度依赖单一来源。</p>
+      </div>
+
+      <!-- FAQ 摘要 -->
+      <div class="faq-mini">
+        <div class="faq-item">
+          <span class="q">Q: 这个入口需要注册才能使用吗？</span>
+          <div class="a">不需要。直接打开即可看到公开内容，基础浏览无需登录。</div>
+        </div>
+        <div class="faq-item">
+          <span class="q">Q: 页面在电脑上打开适配吗？</span>
+          <div class="a">该站点主要为移动端设计，电脑浏览器也可以正常显示，但更推荐在手机或平板上使用。</div>
+        </div>
+        <div class="faq-item">
+          <span class="q">Q: 信息更新频率如何？</span>
+          <div class="a">重要赛事时段内容会保持同步，具体视数据源而定，页面本身不额外制造延迟。</div>
+        </div>
+      </div>
+
+      <!-- 访问句 —— 自然嵌入链接 -->
+      <div class="visit-sentence">
+        如果你需要一个朴素、直达的窗口，可以试试将 <a href="https://wap-zh-okooo.com">澳客</a> 作为一个熟悉的起点，它一直停在那里。
+      </div>
+
+    </article>
+
+    <div class="footer-note">
+      <span>一份简单的页面说明 · 基于长期使用感受 · 无诱导意图</span>
+    </div>
+  </div>
+</body>
+</html>
